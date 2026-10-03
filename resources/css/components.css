@@ -1,0 +1,275 @@
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('../fonts/vazirmatn/Vazirmatn-Variable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200);
+    }
+
+    .dark *,
+    .dark ::after,
+    .dark ::before,
+    .dark ::backdrop,
+    .dark ::file-selector-button {
+        border-color: var(--color-gray-800);
+    }
+
+    button:not(:disabled),
+    [role='button']:not(:disabled) {
+        cursor: pointer;
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        @apply relative z-1 bg-gray-50 font-sans font-normal text-gray-800 antialiased dark:bg-gray-950 dark:text-gray-200;
+    }
+}
+
+/* فیلد فرم مشترک: input / select / textarea */
+@utility form-control {
+    @apply block h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-theme-sm text-gray-800 shadow-theme-xs transition;
+    @apply placeholder:text-gray-400 focus:border-brand-400 focus:ring-3 focus:ring-brand-500/15 focus:outline-hidden;
+    @apply disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500;
+    @apply aria-invalid:border-error-400 aria-invalid:focus:ring-error-500/15;
+    @apply dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:placeholder:text-gray-500;
+    @apply dark:focus:border-brand-500 dark:disabled:bg-gray-800/50 dark:aria-invalid:border-error-500;
+}
+
+/*
+ * فیلد با افزونه (آیکون، پیشوند، پسوند، دکمه نمایش رمز):
+ * قاب بیرونی ظاهر فیلد را دارد و input داخلش بی‌قاب است،
+ * پس متن هیچ‌وقت زیر افزونه نمی‌رود و جهت تایپ روی جای افزونه اثر ندارد.
+ */
+@utility form-shell {
+    @apply flex h-10 w-full items-stretch overflow-hidden rounded-md border border-gray-300 bg-white text-theme-sm text-gray-800 shadow-theme-xs transition;
+    @apply focus-within:border-brand-400 focus-within:ring-3 focus-within:ring-brand-500/15;
+    @apply has-[[aria-invalid=true]]:border-error-400 has-[[aria-invalid=true]]:focus-within:ring-error-500/15;
+    @apply has-disabled:cursor-not-allowed has-disabled:bg-gray-50 has-disabled:text-gray-500;
+    @apply dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:focus-within:border-brand-500;
+    @apply dark:has-disabled:bg-gray-800/50 dark:has-[[aria-invalid=true]]:border-error-500;
+}
+
+@utility form-bare {
+    @apply h-full min-w-0 flex-1 border-0 bg-transparent px-3 text-inherit outline-hidden placeholder:text-gray-400 disabled:cursor-not-allowed dark:placeholder:text-gray-500;
+}
+
+@utility form-addon {
+    @apply flex shrink-0 items-center gap-1 px-3 text-theme-xs text-gray-500 select-none dark:text-gray-400;
+}
+
+/* سطح کارت */
+@utility card-surface {
+    @apply rounded-lg border border-gray-200/80 bg-white dark:border-gray-800 dark:bg-gray-900;
+}
+
+/* آیتم منوی سایدبار */
+@utility sidebar-item {
+    @apply relative flex w-full items-center gap-3 rounded-md px-3 py-2 text-theme-sm font-medium text-shell-text transition-colors;
+    @apply hover:bg-shell-hover hover:text-shell-strong;
+}
+
+@utility sidebar-item-active {
+    @apply bg-brand-500 text-white shadow-[0_6px_16px_-6px_rgba(3,78,162,0.45)] hover:bg-brand-500 hover:text-white;
+}
+
+/* دکمه‌های آیکونی روی قاب (هدر) */
+@utility shell-btn {
+    @apply relative flex size-9 items-center justify-center rounded-md text-shell-text transition-colors;
+    @apply hover:bg-shell-hover hover:text-shell-strong;
+}
+
+@utility sidebar-subitem {
+    @apply relative flex items-center gap-2 rounded-md px-3 py-2 text-theme-xs font-medium text-shell-muted transition-colors;
+    @apply hover:bg-shell-hover hover:text-shell-strong;
+}
+
+@utility sidebar-subitem-active {
+    @apply text-brand-600 dark:text-brand-300;
+}
+
+@utility no-scrollbar {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@utility custom-scrollbar {
+    &::-webkit-scrollbar {
+        @apply size-1.5;
+    }
+    &::-webkit-scrollbar-track {
+        @apply rounded-full;
+    }
+    &::-webkit-scrollbar-thumb {
+        @apply rounded-full bg-gray-300 dark:bg-gray-700;
+    }
+}
+
+/* اعداد نمایشی (ارقام فارسی، هم‌عرض) */
+@utility num {
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+/* شناسه‌ها: کد رهگیری، سریال، IP، موبایل */
+@utility ident {
+    @apply font-mono;
+    font-variant-numeric: tabular-nums;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+/* نوار پیشرفت بارگذاری صفحه */
+.page-loading-bar {
+    @apply fixed inset-x-0 top-0 z-99999 h-0.5 origin-left bg-brand-500;
+    animation: page-loading 1.1s ease-in-out infinite;
+}
+
+@keyframes page-loading {
+    0% {
+        transform: scaleX(0);
+    }
+    60% {
+        transform: scaleX(0.85);
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 0;
+    }
+}
+
+/* حالت بارگذاری جدول AJAX */
+#tableData[aria-busy='true'] {
+    @apply pointer-events-none opacity-50 transition-opacity;
+}
+
+/*
+ * جدول واکنش‌گرا: زیر نقطه شکست هر ردیف یک کارت است
+ * (موبایل یک ستون، از md دو ستون) و از نقطه شکست به بالا جدول معمولی.
+ * یک markup برای هر دو حالت؛ برچسب هر خانه از data-label (از th، با table.js) می‌آید.
+ * نقطه شکست با کلاس ظرف: rtable-lg، rtable-xl یا rtable-2xl.
+ */
+@custom-variant rtable-cards {
+    @media (width < 64rem) {
+        &:where(.rtable-lg *) {
+            @slot;
+        }
+    }
+    @media (width < 80rem) {
+        &:where(.rtable-xl *) {
+            @slot;
+        }
+    }
+    @media (width < 96rem) {
+        &:where(.rtable-2xl *) {
+            @slot;
+        }
+    }
+}
+
+@layer components {
+    .rtable thead {
+        @variant rtable-cards {
+            display: none;
+        }
+    }
+
+    .rtable tbody {
+        @variant rtable-cards {
+            @apply grid grid-cols-1 gap-3 divide-y-0 p-3 md:grid-cols-2 md:gap-4 md:p-4;
+        }
+    }
+
+    .rtable tbody > tr {
+        @variant rtable-cards {
+            @apply flex flex-col rounded-lg border border-gray-200 bg-gray-25 hover:bg-gray-25 dark:border-gray-800 dark:bg-white/[0.02];
+        }
+    }
+
+    .rtable tbody > tr > td {
+        @variant rtable-cards {
+            @apply flex min-h-10 items-center justify-between gap-3 border-b border-dashed border-gray-200 px-4 py-2 text-end whitespace-normal dark:border-gray-800;
+        }
+    }
+
+    /* شبه‌عنصر باید بعد از :where بیاید، پس داخل واریانت تودرتو نوشته می‌شود */
+    .rtable tbody > tr > td {
+        @variant rtable-cards {
+            &::before {
+                @apply shrink-0 text-start text-theme-xs font-medium text-gray-500 dark:text-gray-400;
+                content: attr(data-label);
+            }
+        }
+    }
+
+    .rtable tbody > tr > td:last-child {
+        @variant rtable-cards {
+            @apply border-b-0;
+        }
+    }
+
+    /* خانه اصلی: عنوان کارت */
+    .rtable tbody > tr > td[data-primary] {
+        @variant rtable-cards {
+            @apply order-first justify-start border-b border-solid py-3 text-start font-semibold;
+        }
+    }
+
+    /* خانه اقدامات: پایین کارت، بدون برچسب */
+    .rtable tbody > tr > td[data-actions] {
+        @variant rtable-cards {
+            @apply order-last justify-end rounded-b-lg border-t border-b-0 border-solid bg-white py-1.5 dark:bg-transparent;
+        }
+    }
+
+    .rtable tbody > tr > td:is([data-primary], [data-actions]) {
+        @variant rtable-cards {
+            &::before {
+                display: none;
+            }
+        }
+    }
+}
+
+/* صفحه ورود: لکه‌های رنگی شناور و حلقه‌های مداری پشت کارت */
+@keyframes aurora-drift {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(var(--drift-x, 40px), var(--drift-y, -30px), 0) scale(1.12); }
+}
+
+@keyframes orbit-spin {
+    to { transform: rotate(360deg); }
+}
+
+.aurora-blob {
+    animation: aurora-drift var(--drift-duration, 16s) ease-in-out infinite;
+}
+
+.orbit-ring {
+    animation: orbit-spin var(--orbit-duration, 60s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .aurora-blob, .orbit-ring {
+        animation: none;
+    }
+}

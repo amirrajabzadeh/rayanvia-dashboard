@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160">
+  <rect width="160" height="160" rx="36" fill="#2a6fc0"/>
+  <path d="M49 120V40h36c17.5 0 27.500 8.750 27.500 23 0 11.900-7.500 20-20 22.500L116 120h-14l-20-30H61v30H49Zm12-41.500h23c10.600 0 16.500-4.700 16.500-14.500S94.600 49.500 84 49.500H61v29Z" fill="#fff"/>
+  <text x="188" y="106" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="84" font-weight="700" fill="#f2f4f7" letter-spacing="-2">rayanvia</text>
+</svg>
